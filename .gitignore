@@ -1,0 +1,8 @@
+venv/
+
+# Ignore other generated files
+*.pyc
+__pycache__/
+*.egg-info/
+dist/
+build/
