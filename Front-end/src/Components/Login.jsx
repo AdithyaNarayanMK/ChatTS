@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import "../login.css";
-// import MainApp from './MainApp';
-// import { BrowserRouter as Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 
 export default function Login() {
@@ -14,11 +13,15 @@ export default function Login() {
     <body>
       <nav className="navbar">
         <div className="navbar-logo">
+        <NavLink to="/home">
           <img src="./chatbot.avif" alt="CHATTS" />
+        </NavLink>
         </div>
         <ul className="navbar-menu">
           <li className="navbar-item">
-            <a href="#">Home</a>
+            <NavLink to="/home">
+              <a>Home</a>
+            </NavLink>
           </li>
           <li className="navbar-item">
             <a href="#">Contact Us</a>
@@ -93,11 +96,13 @@ export default function Login() {
                   >
                     Forgot password?
                   </button>
+                  <Link to="/chat">
                   <input
                     type="submit"
                     value="Sign In"
                     className="forms_buttons-action"
                   />
+                  </Link>
                 </div>
               </form>
             </div>
@@ -124,13 +129,15 @@ export default function Login() {
                     Enter Password
                   </label>
                 </div>
-
+                
                 <div className="forms_buttons">
-                  <input
-                    type="submit"
-                    value="Sign up"
-                    className="forms_buttons-action"
-                  />
+                  <Link to="/chat">
+                    <input
+                      type="submit"
+                      value="Sign up"
+                      className="forms_buttons-action"
+                    />
+                  </Link>
                 </div>
               </form>
             </div>
