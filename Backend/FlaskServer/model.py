@@ -5,7 +5,7 @@ from flask_cors import cross_origin
 from flask import Blueprint, request
 
 API_URL = "https://api-inference.huggingface.co/models/google/pegasus-cnn_dailymail"
-headers = {"Authorization": f"Bearer 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"}
+headers = {"Authorization": f"Bearer {API_KEY}"}
 
 
 
