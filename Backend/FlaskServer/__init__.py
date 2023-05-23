@@ -1,6 +1,6 @@
 from flask import Flask
 import os
-
+from flask_cors import CORS
 
 def create_app(test_config = None):
     app = Flask(__name__, instance_relative_config = True)
@@ -25,7 +25,11 @@ def create_app(test_config = None):
     from .auth import auth_bp
     app.register_blueprint(auth_bp)
 
+    from .model import model_bp
+    app.register_blueprint(model_bp)
 
+    CORS(app)
+    CORS(app, origins=['http://localhost:5173'], methods=['GET', 'POST'], allow_headers=['Content-Type'])
     
     @app.route("/")
     def home():
