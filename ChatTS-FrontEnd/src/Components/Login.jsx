@@ -34,6 +34,27 @@ export default function Login() {
       console.log(error);
     }
   };
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await axios.post('http://127.0.0.1:5000/auth/login', { email, password });
+      const data = response.data; // JSON response from the server
+
+      if (response.status === 200 && data.info === 'login Successful') {
+        // Route to chat page
+        // history.push('/chat');
+        navigate('/chat');
+      } else {
+        // Display an alert for failed registration
+        alert('Login failed');
+      }
+    } catch (error) {
+      // Handle error
+      console.log(error);
+    }
+  };
   
 
 
@@ -97,13 +118,15 @@ export default function Login() {
             <div className={'user_forms-login'}>
               <h2 className="forms_title">Sign in</h2>
               <p className="acc">Use your Account</p>
-              <form className="forms_form" >
+              <form className="forms_form" onSubmit={handleLogin} >
                 <div className="inputs">
                   <input
                     type="email"
                     name="email"
                     id="email"
                     className="input"
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
                     
                   />
                   <label htmlFor="email" className="input-label">
@@ -115,6 +138,8 @@ export default function Login() {
                     name="password"
                     id="password"
                     className="input-p"
+                    value={password}
+                    onChange={(event) => setPassword(event.target.value)}
                     
                   />
                   <label htmlFor="password" className="input-label-p">
@@ -168,13 +193,13 @@ export default function Login() {
                 </div>
                 
                 <div className="forms_buttons">
-                  <Link to="/chat">
+                  {/* <Link to="/chat"> */}
                     <input
                       type="submit"
                       value="Sign up"
                       className="forms_buttons-action"
                     />
-                  </Link>
+                  {/* </Link> */}
                 </div>
               </form>
             </div>

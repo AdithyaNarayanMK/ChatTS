@@ -13,10 +13,11 @@ model_bp = Blueprint("model", __name__)
 
 @cross_origin
 @model_bp.route("/model", methods = ["POST"])
-@login_required
+# @login_required
 def model():
     data = request.get_json()
     payload = {"inputs":data["text"]}
 
     res = req.post(API_URL, headers=headers, json=payload)
-    return res.json()
+    print(res.json()[0]["summary_text"])
+    return res.json()[0]["summary_text"]

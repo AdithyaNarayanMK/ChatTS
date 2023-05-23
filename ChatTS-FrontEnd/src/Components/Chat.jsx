@@ -1,6 +1,7 @@
 import { useState,useEffect } from "react";
 import "../StylesSheets/light.css"; 
 import "../StylesSheets/dark.css";
+import axios from "axios";
 
 function Chat() {
   const [theme, setTheme] = useState('light');
@@ -24,6 +25,27 @@ function Chat() {
       }
     );
   }
+
+  function summerize() {
+    const inputText = document.getElementsByName('input-text')[0].value;
+  
+    axios.post('http://127.0.0.1:5000/model', {
+      // params: {
+        text: inputText
+      // }
+    })
+      .then(response => {
+        const summaryText = response.data;
+        document.getElementsByName('output-text')[0].value = summaryText;
+        console.log(summaryText)
+        console.log('Text summarized successfully');
+      })
+      .catch(error => {
+        console.error('Error occurred while summarizing text:', error);
+      });
+  }
+  
+
 
   return (
     <div className="chatbody">
@@ -51,12 +73,12 @@ function Chat() {
         </nav>
 
         <div className="chat-input">
-          <textarea name="text" id="text" placeholder="Enter your text here.." className="input"></textarea>
+          <textarea name="input-text" id="text" placeholder="Enter your text here.." className="input"></textarea>
 
-          <button type="submit" className="chat-submit" id="chat-submit" style={{ fontFamily: "Inter" }}><i className="material-icons">Summarize</i></button>
+          <button type="submit" className="chat-submit" id="chat-submit" style={{ fontFamily: "Inter" }} onClick={summerize} ><i className="material-icons">Summarize</i></button>
         </div>
 
-        <textarea id="text-box" placeholder="Summarized text will appear here" className="output"></textarea>
+        <textarea id="text-box" name="output-text" placeholder="Summarized text will appear here" className="output"></textarea>
 
         <span className="clipboard-icon" onClick={() => copyToClipboard('Text to copy')}>🗎</span>
     </div>
