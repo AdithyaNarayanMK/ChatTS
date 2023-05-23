@@ -1,0 +1,182 @@
+body {
+    background-color: black;
+}
+  
+  
+  
+ .dark .navbar input[type="checkbox"],
+ .dark .navbar .hamburger-lines {
+    display: none;
+  }
+  
+  .dark .navbar {
+    position: fixed;
+    width: 100%;
+    background: transparent;
+    color: #000;
+    opacity: 0.85;
+    height: 50px;
+    z-index: 12;
+  }
+  
+  .dark .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    height: 74px;
+    align-items: center;
+  }
+  
+  .dark .menu-items {
+    order: 2;
+    display: flex;
+  }
+  
+  .dark .menu-items li {
+    list-style: none;
+    margin-left: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+  }
+  
+  .dark .menu-items a {
+    position:absolute;
+    top:23px;
+    left:80px;
+    text-decoration: none;
+    color: white;
+    font-size:40px;
+    font-weight: 500;
+    font-family:"Inter";
+    transition: color 0.3s ease-in-out;
+  }
+  
+ #theme-icon {
+    color: black; 
+  }
+  
+#theme-icon.sun {
+    color: yellow;
+    } 
+   
+    .dark .navbar .button1 {
+   position: absolute;
+    top: 25px;
+    right: 95px;
+    background-color: transparent;
+    color: white;
+    text-decoration: none;
+    padding: 12px 24px;
+    font-size: 25px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .dark .navbar .button1 i {
+    margin-right: 5px;
+    font-size: 20px;
+  }
+  
+  .dark .button1 .fas.fa-moon {
+  position:absolute;
+  top:10px;
+  right:240px;
+    font-size: 1.4em;
+  }
+  
+  .dark .button1 .fas.fa-sun{
+    color: yellow;
+  position:absolute;
+  top:10px;
+  right:240px;
+    font-size: 1.4em;
+  }
+  
+  .dark .fas.fa-moon {
+    color: black;
+    font-size: 5em;
+  }
+  
+  .dark .fas.fa-user{
+  position:absolute;
+  top:30px;
+  right:250px;
+    font-size: 2.4em;
+     color:white;
+     }
+  
+     .dark .navbar .button {
+  
+    position: absolute;
+    top: 25px;
+    right: 80px;
+    font-family:"Inter";
+    
+   padding: 12px 24px;
+    font-size: 18px;
+    background-color:  #085CAB;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+  }
+  
+  
+  
+  
+  
+  .dark .input{
+    position : absolute;
+    top:18%;
+    left:13%;
+    width:500px;
+    height:450px;
+    border-radius:10px;
+    border-style: solid;
+    border-color: linear-gradient(0deg, #000000, #000000) , linear-gradient(0deg, #FFFFFF, #FFFFFF);
+    color:white;
+    border-width: 25px 25px 65px 25px;
+    background: #D9D9D933;
+    padding: 10px;
+    font-size: 18px;
+  }
+    
+  .dark #text-box {
+    position : absolute;
+    top:18%;
+    left:51%;
+    width:500px;
+    height:450px;
+    border-radius:10px;
+    border-style: solid ;
+    border-width: 25px 25px 65px 25px;
+    border-color: rgba(27, 93, 115, 0.5);
+    background: #3B74AB33;
+    color:white;
+    padding: 10px;
+    font-size: 18px; 
+  }
+  
+  .dark .chat-submit {
+   font-family:"Inter";
+   font-size:18px;
+      position: absolute;
+      top:89%;
+      right: 52%;
+      background-color: #216FB9;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      width: 120px;
+      height: 47px;
+      cursor: pointer;
+   }
+    
+   .dark .clipboard-icon {
+    position:absolute;
+    top:89%;
+    right:14%;
+     font-size: 30px;
+     color:white;
+    background-color: transparent;
+    cursor: pointer;
+  }

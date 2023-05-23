@@ -1,6 +1,6 @@
 from flask import Flask
 import os
-
+from flask_cors import CORS
 
 def create_app(test_config = None):
     app = Flask(__name__, instance_relative_config = True)
@@ -9,6 +9,9 @@ def create_app(test_config = None):
         SECRET_KEY = "dev",
         PERMANENT_SESSION_LIFETIME = 5000,
     )
+    CORS(app)
+    CORS(app, origins=['http://localhost:5173'], methods=['GET', 'POST'], allow_headers=['Content-Type'])
+
     if test_config is not None:
         app.config.from_mapping(test_config)
     
@@ -25,8 +28,11 @@ def create_app(test_config = None):
     from .auth import auth_bp
     app.register_blueprint(auth_bp)
 
-
+    from .model import summModel
+    app.register_blueprint(summModel)
     
+
+
     @app.route("/")
     def home():
         return "", 200
