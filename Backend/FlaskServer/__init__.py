@@ -9,6 +9,9 @@ def create_app(test_config = None):
         SECRET_KEY = "dev",
         PERMANENT_SESSION_LIFETIME = 5000,
     )
+    CORS(app)
+    CORS(app, origins=['http://localhost:5173'], methods=['GET', 'POST'], allow_headers=['Content-Type'])
+
     if test_config is not None:
         app.config.from_mapping(test_config)
     
@@ -25,12 +28,15 @@ def create_app(test_config = None):
     from .auth import auth_bp
     app.register_blueprint(auth_bp)
 
+
     from .model import model_bp
     app.register_blueprint(model_bp)
 
     CORS(app)
     CORS(app, origins=['http://localhost:5173'], methods=['GET', 'POST'], allow_headers=['Content-Type'])
-    
+   
+
+
     @app.route("/")
     def home():
         return "", 200

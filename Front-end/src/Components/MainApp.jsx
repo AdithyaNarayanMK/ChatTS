@@ -1,7 +1,7 @@
 import { useState , useEffect } from 'react';
 import SlidingAnimation from './SlidingAnimation';
 import Home from "./Home";
-import '../App.css'
+// import '../App.css'
 
 export default function MainApp() {
     const [isLoading, setIsLoading] = useState(true);
