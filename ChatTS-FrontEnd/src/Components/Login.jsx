@@ -1,6 +1,9 @@
 import { useState } from 'react';
-import '../StylesSheets/login.css'
+import "../StylesSheets/login.css";
 import { Link, NavLink } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 import axios from 'axios';
 
 
@@ -8,17 +11,31 @@ export default function Login() {
   const [animate, setAnimate] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  // const history = useHistory();
+  const navigate = useNavigate();
 
-  function handleSubmit(event) {
+  const handleSignUp = async (event) => {
     event.preventDefault();
 
-    axios.post('http://127.0.0.1:5000/auth/register', {
-      email: email,
-      password: password
-    })
-    .then(response => console.log(response.data))
-    .catch(error => console.error(error));
-  }
+    try {
+      const response = await axios.post('http://127.0.0.1:5000/auth/register', { email, password });
+      const data = response.data; // JSON response from the server
+
+      if (response.status === 200 && data.info === 'registered Successfully') {
+        // Route to chat page
+        // history.push('/chat');
+        navigate('/chat');
+      } else {
+        // Display an alert for failed registration
+        alert('Registration failed');
+      }
+    } catch (error) {
+      // Handle error
+      console.log(error);
+    }
+  };
+  
+
 
   const toggleAnimation = () => {
     setAnimate(!animate);
@@ -80,17 +97,16 @@ export default function Login() {
             <div className={'user_forms-login'}>
               <h2 className="forms_title">Sign in</h2>
               <p className="acc">Use your Account</p>
-              <form className="forms_form" onSubmit={handleSubmit}>
+              <form className="forms_form" >
                 <div className="inputs">
                   <input
                     type="email"
                     name="email"
                     id="email"
                     className="input"
-                    value={email}
-                    onChange={(event) => setEmail(event.target.value)}
+                    
                   />
-                  <label htmlFor="email" className="input-label" placeholder='email'>
+                  <label htmlFor="email" className="input-label">
                     Email
                   </label>
 
@@ -99,10 +115,9 @@ export default function Login() {
                     name="password"
                     id="password"
                     className="input-p"
-                    value={password}
-                    onChange={(event) => setPassword(event.target.value)}
+                    
                   />
-                  <label htmlFor="password" className="input-label-p" placeholder='password'>
+                  <label htmlFor="password" className="input-label-p">
                     Password
                   </label>
                 </div>
@@ -114,27 +129,29 @@ export default function Login() {
                   >
                     Forgot password?
                   </button>
-                  <Link to="/chat">
+                  {/* <Link to="/chat"> */}
                   <input
                     type="submit"
                     value="Sign In"
                     className="forms_buttons-action"
                   />
-                  </Link>
+                  {/* </Link> */}
                 </div>
               </form>
             </div>
             <div className="user_forms-signup">
               <h2 className="forms_title">Create Account</h2>
-              <form className="forms_form">
+              <form className="forms_form" onSubmit={handleSignUp}>
                 <div className="inputs">
                   <input
                     type="email"
                     name="email"
                     id="email"
                     className="input"
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
                   />
-                  <label htmlFor="email" className="input-label" placeholder='email'>
+                  <label htmlFor="email" className="input-label">
                     Enter your Email
                   </label>
                   <input
@@ -142,8 +159,10 @@ export default function Login() {
                     name="password"
                     id="password"
                     className="input-p"
+                    value={password}
+                    onChange={(event) => setPassword(event.target.value)}
                   />
-                  <label htmlFor="password" className="input-label-p" placeholder='Enter Password'>
+                  <label htmlFor="password" className="input-label-p">
                     Enter Password
                   </label>
                 </div>
@@ -165,4 +184,3 @@ export default function Login() {
     </div>
   );
 }
-

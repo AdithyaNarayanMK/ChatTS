@@ -10,8 +10,8 @@ export default function Login() {
     setAnimate(!animate);
   };
   return (
-    <body>
-      {/* <nav className="navbar">
+    <div className='mainbody'>
+      <nav className="navbar">
         <div className="navbar-logo">
         <NavLink to="/home">
           <img src="./chatbot.avif" alt="CHATTS" />
@@ -27,11 +27,11 @@ export default function Login() {
             <a href="#">Contact Us</a>
           </li>
         </ul>
-      </nav> */}
+      </nav>
       <section className="user">  
         <div className="user_options-container">
           <div className="user_options-text">
-            {/* <div className="user_options-unregistered">
+            <div className="user_options-unregistered">
               <h2 className="user_unregistered-title">Hello!</h2>
               <p className="user_unregistered-text">
                 To keep connected with us please login <br />
@@ -44,9 +44,9 @@ export default function Login() {
               >
                 <span className="text">Sign up</span>
               </button>
-            </div> */}
+            </div>
 
-            {/* <div className="user_options-registered">
+            <div className="user_options-registered">
               <h2 className="user_registered-title">Welcome Back!</h2>
               <p className="user_registered-text">
                 Enter your Personal details and start<br /> your journey
@@ -58,7 +58,7 @@ export default function Login() {
               >
                 <span className="text">Sign in</span>
               </button>
-            </div> */}
+            </div>
           </div>
           <div  className={`user_options-forms ${animate ? 'bounceLeft' : 'bounceRight'}`}
   id="user_options-forms" >

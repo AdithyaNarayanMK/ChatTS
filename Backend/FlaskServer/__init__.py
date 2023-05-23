@@ -10,7 +10,7 @@ def create_app(test_config = None):
         PERMANENT_SESSION_LIFETIME = 5000,
     )
     CORS(app)
-    CORS(app, origins=['http://localhost:5173'], methods=['GET', 'POST'], allow_headers=['Content-Type'])
+    CORS(app, origins=['http://localhost:5174'], methods=['GET', 'POST'], allow_headers=['Content-Type'])
 
     if test_config is not None:
         app.config.from_mapping(test_config)
