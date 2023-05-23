@@ -28,9 +28,13 @@ def create_app(test_config = None):
     from .auth import auth_bp
     app.register_blueprint(auth_bp)
 
-    from .model import summModel
-    app.register_blueprint(summModel)
-    
+
+    from .model import model_bp
+    app.register_blueprint(model_bp)
+
+    CORS(app)
+    CORS(app, origins=['http://localhost:5173'], methods=['GET', 'POST'], allow_headers=['Content-Type'])
+   
 
 
     @app.route("/")

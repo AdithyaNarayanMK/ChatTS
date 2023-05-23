@@ -2,8 +2,6 @@ from flask import session, request, Blueprint, redirect
 from werkzeug.security import check_password_hash, generate_password_hash
 from functools import wraps
 from flask_cors import cross_origin
-import json
-
 
 from FlaskServer.db import get_db
 
@@ -11,12 +9,10 @@ auth_bp = Blueprint("auth", __name__, url_prefix = "/auth")
 @cross_origin
 @auth_bp.route("/register", methods = ["POST"])
 def register():
-    json_data = request.get_data().decode()
-    json_data = json.loads(json_data)
-
-
-    email = json_data["email"]
-    password = json_data["password"]
+    
+    data = request.get_json()
+    email = data["email"]
+    password = data["password"]
     
     if email == "":
         return {"info": "email is required."}, 409
@@ -39,12 +35,11 @@ def register():
 @cross_origin
 @auth_bp.route("/login", methods = ["POST"])
 def login():
-    json_data = request.get_data().decode()
-    json_data = json.loads(json_data)
 
-    email = json_data["email"]
-    password = json_data["password"]
- 
+    data = request.get_json()
+    email = data["email"]
+    password = data["password"]
+
 
     db = get_db()
     data = db.execute("select * from user where user_email = ?",(email,)).fetchone()

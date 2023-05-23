@@ -1,26 +1,22 @@
-from flask import Blueprint
-from flask import request
-import json
-import requests
+import requests as req
 from .auth import login_required
+from flask_cors import cross_origin
+
+from flask import Blueprint, request
+
+API_URL = "https://api-inference.huggingface.co/models/google/pegasus-cnn_dailymail"
+headers = {"Authorization": f"Bearer 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"}
 
 
-API_URL = "https://api-inference.huggingface.co/models/google/pegasus-large"
-headers = {"Authorization": "Bearer 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"}
 
-def query(payload):
-	response = requests.post(API_URL, headers=headers, json=payload)
-	return response.json()
-	
+model_bp = Blueprint("model", __name__)
 
-summModel = Blueprint("model", __name__)
-
+@cross_origin
+@model_bp.route("/model", methods = ["POST"])
 @login_required
-@summModel.route("summarize")
-def summarize():
-    data = json.loads(request.get_data().decode())
+def model():
+    data = request.get_json()
+    payload = {"inputs":data["text"]}
 
-
-    summarized = requests.post(API_URL, headers=headers, json=data)
-    return summarized.json(), 200
-    
+    res = req.post(API_URL, headers=headers, json=payload)
+    return res.json()
