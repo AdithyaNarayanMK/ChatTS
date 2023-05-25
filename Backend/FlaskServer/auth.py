@@ -23,13 +23,13 @@ def register():
     ifExist = db.execute("select user_email from user where user_email = ?",(email,)).fetchone()
     if ifExist:
         
+        
         return {"info": "User already exist in the database"}, 409
     
 
     db.execute("insert into user (user_email, password) values (?, ?)",(email, generate_password_hash(password)))
     db.commit()
     data = db.execute("select id from user where user_email = ?",(email,)).fetchone()
-
     return {"user_email": email, "id" : data["id"], "info" : "registered Successfully"}, 200
 
 @cross_origin
@@ -40,13 +40,16 @@ def login():
     email = data["email"]
     password = data["password"]
 
-
     db = get_db()
+
     data = db.execute("select * from user where user_email = ?",(email,)).fetchone()
+    
     if not data:
+        print("not in data")
         return {"info": "Unauthorized"}, 401
      
     if not check_password_hash(data["password"],password):
+        print("invalid password")
         return {"info": "Unauthorized"}, 401
 
 

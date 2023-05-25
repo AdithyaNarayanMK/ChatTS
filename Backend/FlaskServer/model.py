@@ -11,9 +11,10 @@ headers = {"Authorization": f"Bearer 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"}
 
 model_bp = Blueprint("model", __name__)
 
+
 @cross_origin
 @model_bp.route("/model", methods = ["POST"])
-# @login_required
+@login_required
 def model():
     data = request.get_json()
     payload = {"inputs":data["text"]}

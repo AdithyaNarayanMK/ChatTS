@@ -2,6 +2,7 @@ import { useState,useEffect } from "react";
 import "../StylesSheets/light.css"; 
 import "../StylesSheets/dark.css";
 import axios from "axios";
+import {Link} from 'react-router-dom'
 
 function Chat() {
   const [theme, setTheme] = useState('light');
@@ -15,8 +16,9 @@ function Chat() {
   function toggleTheme() {
     setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
   }
-  function copyToClipboard(text) {
-    navigator.clipboard.writeText(text).then(
+  function copyToClipboard() {
+    const outputText = document.getElementsByName('output-text')[0].value;
+    navigator.clipboard.writeText(outputText).then(
       function() {
         console.log('Text copied to clipboard');
       },
@@ -45,6 +47,9 @@ function Chat() {
       });
   }
   
+  function logout(){
+    alert("You have logout successfully")
+  }
 
 
   return (
@@ -57,18 +62,18 @@ function Chat() {
         )}
         <nav className="navbar">
           <div className="navbar-container container">
-            <input type="checkbox" name="" id="" />
+            {/* <input type="checkbox" name="" id="" /> */}
             <div className="hamburger-lines">
-              <span className="line line1"></span>
-              <span className="line line2"></span>
-              <span className="line line3"></span>
+            <img src="./chatbot.avif" alt="CHATTS" />
             </div>
             <ul className="menu-items">
               <li><a href="home.html">ChatTS</a></li>
             </ul>
             <div className="button1"><li><a id="theme-toggle" href="#" onClick={toggleTheme}><i id="theme-icon" className={theme === "light" ? "fas fa-moon" : "fas fa-sun"}></i></a></li></div>
             <i className="fas fa-user"></i>
-            <li><a className="button" href="home.html">Logout</a></li>
+            <Link to='/signin'>
+              <li><a className="button" onClick={logout}>Logout</a></li>
+            </Link>
           </div>
         </nav>
 
@@ -80,7 +85,7 @@ function Chat() {
 
         <textarea id="text-box" name="output-text" placeholder="Summarized text will appear here" className="output"></textarea>
 
-        <span className="clipboard-icon" onClick={() => copyToClipboard('Text to copy')}>🗎</span>
+        <span className="clipboard-icon" onClick={copyToClipboard}>🗎</span>
     </div>
     </div> 
   );

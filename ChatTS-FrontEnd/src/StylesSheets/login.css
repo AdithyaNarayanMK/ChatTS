@@ -303,7 +303,6 @@ button:hover span {
 	text-transform: uppercase;
 	color: #085CAB;
 	letter-spacing: .1rem;
-	
 }
 
 .forms_field-input {
@@ -315,7 +314,7 @@ button:hover span {
   border-radius: 20px;
 }
 
-input[type="email"] {
+.input[type="email"] {
   display: block;
   border: 3px solid grey;
   font-size: 16px;
@@ -347,7 +346,7 @@ input[type="email"] {
 
 
 
-input[type="email"]:focus ~ .input-label {
+.input[type="email"]:focus ~ .input-label {
 
   top: -7px;
   color: #216FB9;
@@ -355,7 +354,7 @@ input[type="email"]:focus ~ .input-label {
   background-color: rgb(255, 255, 255);
   z-index: 2;
 }
-input[type="email"]:target ~ .input-label {
+.input[type="email"]:target ~ .input-label {
 
   top: -7px;
   color: #216FB9;
@@ -366,6 +365,14 @@ input[type="email"]:target ~ .input-label {
 .input:focus {
   border: 3px solid #216FB9;
 }
+.input:focus ~ .input-label,
+.input:not(:placeholder-shown).input:not(:focus):valid ~ .input-label {
+  top: -0.5rem;
+  font-size: 0.8rem;
+  left: 0.8rem;
+  z-index: 4;
+  background-color: rgb(255, 255, 255);
+}
 
 
 .input-p[type="password"] {
@@ -375,14 +382,12 @@ input[type="email"]:target ~ .input-label {
   margin-bottom: 30px;
   position: relative;
   z-index:3;
-  
-    font-size: 16px;
+  font-size: 16px;
   right:30%;
   left:0%;
   background-color: transparent;
   outline: none;
   border-radius: 20px;
-  position: relative;
   border-radius:20px;
   width:400px;
   height:50px;
@@ -421,6 +426,16 @@ input[type="email"]:target ~ .input-label {
 .input-p:focus {
   border: 3px solid #1a73e8;
 }
+
+.input-p:focus ~ .input-label-p,
+.input-p:not(:placeholder-shown).input-p:not(:focus):valid ~ .input-label-p {
+  top: 77px;
+  font-size: 0.8rem;
+  left: 0.8rem;
+  background-color: rgb(255, 255, 255);
+  z-index: 4;
+}
+
 
 .user_options-forms {
   background-image: url('chatbot.avif');

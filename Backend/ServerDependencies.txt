@@ -1,3 +1,5 @@
 flask
 pytest
 coverage
+Flask-Cors
+requests

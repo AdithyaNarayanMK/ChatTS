@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import "../StylesSheets/login.css";
 import { Link, NavLink } from 'react-router-dom';
-// import { useHistory } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
@@ -11,7 +10,6 @@ export default function Login() {
   const [animate, setAnimate] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const history = useHistory();
   const navigate = useNavigate();
 
   const handleSignUp = async (event) => {
@@ -125,11 +123,13 @@ export default function Login() {
                     name="email"
                     id="email"
                     className="input"
+                    autoComplete="off"
                     value={email}
+                    required
                     onChange={(event) => setEmail(event.target.value)}
-                    
+                    placeholder=''
                   />
-                  <label htmlFor="email" className="input-label">
+                  <label htmlFor="email"  className="input-label">
                     Email
                   </label>
 
@@ -139,10 +139,11 @@ export default function Login() {
                     id="password"
                     className="input-p"
                     value={password}
+                    required
                     onChange={(event) => setPassword(event.target.value)}
                     
                   />
-                  <label htmlFor="password" className="input-label-p">
+                  <label htmlFor="password" className="input-label-p" placeholder='password'>
                     Password
                   </label>
                 </div>
@@ -174,9 +175,10 @@ export default function Login() {
                     id="email"
                     className="input"
                     value={email}
+                    required
                     onChange={(event) => setEmail(event.target.value)}
                   />
-                  <label htmlFor="email" className="input-label">
+                  <label htmlFor="email" className="input-label" placeholder='Enter your Email'>
                     Enter your Email
                   </label>
                   <input
@@ -185,9 +187,10 @@ export default function Login() {
                     id="password"
                     className="input-p"
                     value={password}
+                    required
                     onChange={(event) => setPassword(event.target.value)}
                   />
-                  <label htmlFor="password" className="input-label-p">
+                  <label htmlFor="password" className="input-label-p" placeholder='Enter Password'>
                     Enter Password
                   </label>
                 </div>

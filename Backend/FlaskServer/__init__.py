@@ -9,6 +9,7 @@ def create_app(test_config = None):
         SECRET_KEY = "dev",
         PERMANENT_SESSION_LIFETIME = 5000,
     )
+    
     app.config['CORS_ALLOW_ALL_ORIGINS'] = True
     CORS(app)
     CORS(app, origins=['http://localhost:5173'], methods=['GET', 'POST'], allow_headers=['Content-Type'])
@@ -20,7 +21,6 @@ def create_app(test_config = None):
         os.makedirs(app.instance_path)
     except OSError:
         pass
-
 
 
     from . import db
